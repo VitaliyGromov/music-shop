@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx:1.25.3
+        volumes:
+            - ./:/var/www/
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        ports:
+            - "80:80"
+        depends_on:
+            - php
+        container_name: nginx-1.25.3
+
+    php:
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - database
+        container_name: php
+
+    database:
+        image: postgres:15.2
+        restart: always
+        volumes:
+            - ./tmp/db:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+
+        environment:
+            - POSTGRES_USER=${DOCKER_POSTGRES_USER}
+            - POSTGRES_PASSWORD=${DOCKER_POSTGRES_PASSWORD}
+            - PGDATA=/var/lib/postgresql/data/music_shop/
+        container_name: database
+
+    redis:
+        image: redis:7.2.3
+        restart: always
+        container_name: redis
+        volumes:
+            - ./redis_volume_data:/data
+        ports:
+            - "6379:6379"
