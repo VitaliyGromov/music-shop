@@ -26,7 +26,7 @@ class AddDefaultAdminCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         $role = Role::where('name', 'Admin')->first();
 
@@ -42,5 +42,7 @@ class AddDefaultAdminCommand extends Command
 
             $admin->assignRole($role);
         });
+
+        return 0;
     }
 }

@@ -9,6 +9,16 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * App\Models\User
+ * @property int         $id         ID пользователя
+ * @property string      $name       Имя пользователя
+ * @property string      $lastname   Фамилия пользователя
+ * @property ?string     $middlename Отчество
+ * @property boolean     $active     Активен ли пользователь
+ * @property string      $email      Адрес электронной почты
+ *
+*/
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -18,14 +28,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'lastname',
-        'middlename',
-        'email',
-        'password',
-        'active'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,4 +49,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
 }
