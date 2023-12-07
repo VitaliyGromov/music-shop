@@ -29,6 +29,5 @@
 
                 Mail::to($user)->send(new UserCreatedMail($user, $password));
             });
-
         }
     }
