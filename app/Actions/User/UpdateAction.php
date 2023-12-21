@@ -1,23 +1,25 @@
 <?php
 
-    namespace App\Actions\User;
+declare(strict_types=1);
 
-    use App\Models\User;
-    use Illuminate\Support\Arr;
-    use Illuminate\Support\Facades\DB;
-    use Spatie\Permission\Models\Role;
+namespace App\Actions\User;
 
-    class UpdateAction
+use App\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+
+class UpdateAction
+{
+    public function handle(array $validated, User $user): void
     {
-        public function handle(array $validated, User $user): void
-        {
-            $role = Role::find($validated['role_id']);
+        $role = Role::find($validated['role_id']);
 
-            DB::transaction(function () use ($role, $validated, $user) {
+        DB::transaction(function () use ($role, $validated, $user) {
 
-                $user->update(Arr::except($validated, 'role_id'));
+            $user->update(Arr::except($validated, 'role_id'));
 
-                $user->syncRoles($role);
-            });
-        }
+            $user->syncRoles($role);
+        });
     }
+}

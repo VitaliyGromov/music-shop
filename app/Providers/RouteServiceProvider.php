@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
@@ -35,16 +37,17 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware(['web', 'auth', 'active'])
                 ->prefix('admin')
-                ->group(function (){
+                ->group(function () {
                     require base_path('routes/admin/categories.php');
                     require base_path('routes/admin/products.php');
                     require base_path('routes/admin/brands.php');
                     require base_path('routes/admin/users.php');
                     require base_path('routes/admin/orders.php');
+                    require base_path('routes/admin/subcategories.php');
                 });
 
             Route::middleware('web')
-                ->group(function (){
+                ->group(function () {
                     require base_path('routes/web.php');
                 });
         });

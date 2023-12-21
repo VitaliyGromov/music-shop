@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\User;
@@ -14,9 +16,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 20; $i++){
-            DB::transaction(function (){
-                $user = User::withoutEvents(fn() => User::factory()->create());
+        for ($i = 0; $i < 20; $i++) {
+            DB::transaction(function () {
+                $user = User::withoutEvents(fn () => User::factory()->create());
 
                 $role = Role::all()->random();
 

@@ -1,8 +1,9 @@
 <?php
 
-    namespace App\Enums\Order;
+declare(strict_types=1);
 
-    enum OrderStatusEnum
-    {
+namespace App\Enums\Order;
 
-    }
+enum OrderStatusEnum
+{
+}

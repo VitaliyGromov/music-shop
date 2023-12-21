@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\User;
@@ -37,7 +39,7 @@ class AddDefaultAdminCommand extends Command
                 'name' => 'Admin',
                 'lastname' => 'Иванов',
                 'middlename' => 'Иванович',
-                'active' => true
+                'active' => true,
             ]);
 
             $admin->assignRole($role);

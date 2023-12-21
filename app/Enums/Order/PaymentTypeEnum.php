@@ -1,8 +1,9 @@
 <?php
 
-    namespace App\Enums\Order;
+declare(strict_types=1);
 
-    enum PaymentTypeEnum
-    {
+namespace App\Enums\Order;
 
-    }
+enum PaymentTypeEnum
+{
+}

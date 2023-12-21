@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -11,17 +13,17 @@ use Spatie\Permission\Traits\HasRoles;
 
 /**
  * App\Models\User
+ *
  * @property int         $id         ID пользователя
  * @property string      $name       Имя пользователя
  * @property string      $lastname   Фамилия пользователя
  * @property ?string     $middlename Отчество
- * @property boolean     $active     Активен ли пользователь
+ * @property bool     $active     Активен ли пользователь
  * @property string      $email      Адрес электронной почты
- *
-*/
+ */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -49,5 +51,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
 }

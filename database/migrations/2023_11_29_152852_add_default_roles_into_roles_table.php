@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use \Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Role;
 
 return new class extends Migration
 {
     private array $roles = ['Admin', 'Courier', 'User'];
+
     /**
      * Run the migrations.
      */

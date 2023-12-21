@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -34,6 +36,6 @@ return [
     'users' => [
         'adminPassword' => env('ADMIN_PASSWORD', 'password123'),
         'adminEmail' => env('ADMIN_EMAIL', 'admin@admin.com'),
-    ]
+    ],
 
 ];
