@@ -2,22 +2,34 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">{{__('id')}}</th>
-                    <th scope="col">{{__('Name')}}</th>
-                    <th scope="col">{{__('Lastname')}}</th>
-                    <th scope="col">{{__('Middlename')}}</th>
-                    <th scope="col">{{__('email')}}</th>
-                    <th scope="col">{{__('active')}}</th>
-                    <th scope="col">{{__('Role')}}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
+        @if($users->isEmpty())
+            <x-empty-items>
+                <x-slot name="title">
+                    {{__('Пока не добавлено ни одного пользователя')}}
+                </x-slot>
+                <x-slot name="button">
+                    <button class="btn btn-primary" data-bs-target="#user-create" data-bs-toggle="modal">
+                        {{__('Add')}}
+                    </button>
+                </x-slot>
+            </x-empty-items>
+        @else
+            <div class="row justify-content-center">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">{{__('id')}}</th>
+                        <th scope="col">{{__('Name')}}</th>
+                        <th scope="col">{{__('Lastname')}}</th>
+                        <th scope="col">{{__('Middlename')}}</th>
+                        <th scope="col">{{__('email')}}</th>
+                        <th scope="col">{{__('active')}}</th>
+                        <th scope="col">{{__('Role')}}</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     @foreach($users as $user)
                         <tr>
                             <th scope="row">{{$user->id}}</th>
@@ -85,17 +97,18 @@
                             </x-slot>
                         </x-modal.index>
                     @endforeach
-                </tbody>
-            </table>
-            {{$users->links()}}
-            <div class="row">
-                <div class="col-1">
-                    <button class="btn btn-primary" data-bs-target="#user-create" data-bs-toggle="modal">
-                        {{__('Add')}}
-                    </button>
+                    </tbody>
+                </table>
+                {{$users->links()}}
+                <div class="row">
+                    <div class="col-1">
+                        <button class="btn btn-primary" data-bs-target="#user-create" data-bs-toggle="modal">
+                            {{__('Add')}}
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
     <x-modal.index id="user-create">
         <x-slot name="title">

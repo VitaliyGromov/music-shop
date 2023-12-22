@@ -3,21 +3,16 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Products') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('You are on the products page!') }}
-                    </div>
-                </div>
-            </div>
+            <x-empty-items>
+                <x-slot name="title">
+                    {{__('Пока не добавлено ни одного товара')}}
+                </x-slot>
+                <x-slot name="button">
+                    <button class="btn btn-primary">
+                        {{__('Add')}}
+                    </button>
+                </x-slot>
+            </x-empty-items>
         </div>
     </div>
 @endsection
