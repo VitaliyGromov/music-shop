@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('in_stock');
-            $table->string('description');
+            $table->text('description');
             $table->integer('price');
-            $table->jsonb('characteristics');
             $table->foreignId('category_id')
                 ->constrained('categories')
                 ->onDelete('cascade');

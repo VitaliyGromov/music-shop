@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Http\Requests\Admin\Product\UpdateRequest;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -17,18 +18,28 @@ class ProductController extends Controller
         return view('pages.admin.products.index');
     }
 
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): RedirectResponse
     {
+        $validated = $request->validated();
 
+        Product::create($validated);
+
+        return redirect()->back();
     }
 
-    public function update(UpdateRequest $request, Product $product)
+    public function update(UpdateRequest $request, Product $product): RedirectResponse
     {
+        $validated = $request->validated();
 
+        $product->update($validated);
+
+        return redirect()->back();
     }
 
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
+        $product->delete();
 
+        return redirect()->back();
     }
 }

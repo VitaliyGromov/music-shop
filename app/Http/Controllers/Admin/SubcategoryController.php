@@ -7,11 +7,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Subcategory\StoreRequest;
 use App\Http\Requests\Admin\Subcategory\UpdateRequest;
+use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SubcategoryController extends Controller
 {
+    public function index(Category $category): View
+    {
+        $subcategories = $category->subcategories()->paginate(15);
+
+        return view('pages.admin.categories.subcategories', compact(['category', 'subcategories']));
+    }
     public function store(StoreRequest $request): RedirectResponse
     {
         $validated = $request->validated();
