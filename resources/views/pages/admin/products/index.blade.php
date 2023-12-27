@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <x-empty-items>
                 <x-slot name="title">
-                    {{__('Пока не добавлено ни одного товара')}}
+                    {{__('no products added yet')}}
                 </x-slot>
                 <x-slot name="button">
                     <button class="btn btn-primary">

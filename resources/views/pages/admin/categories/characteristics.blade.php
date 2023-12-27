@@ -12,7 +12,7 @@
         @if($category->characteristics->isEmpty())
             <x-empty-items>
                 <x-slot name="title">
-                    {{__('Пока не добавлено ни одной характеристики для категории')}} {{$category->name}}
+                    {{__('no characteristics added yet for category ')}} {{$category->name}}
                 </x-slot>
                 <x-slot name="button">
                     <button class="btn btn-primary" data-bs-target="#characteristic-create" data-bs-toggle="modal">

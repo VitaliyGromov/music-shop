@@ -12,7 +12,7 @@
         @if($category->subcategories->isEmpty())
             <x-empty-items>
                 <x-slot name="title">
-                    {{__('Пока не добавлено ни одной подкатегории для категории')}} {{$category->name}}
+                    {{__('no subcategories added yet for category ')}} {{$category->name}}
                 </x-slot>
                 <x-slot name="button">
                     <button class="btn btn-primary" data-bs-target="#subcategory-create" data-bs-toggle="modal">

@@ -5,7 +5,7 @@
         @if($users->isEmpty())
             <x-empty-items>
                 <x-slot name="title">
-                    {{__('Пока не добавлено ни одного пользователя')}}
+                    {{__('no users added yet')}}
                 </x-slot>
                 <x-slot name="button">
                     <button class="btn btn-primary" data-bs-target="#user-create" data-bs-toggle="modal">
