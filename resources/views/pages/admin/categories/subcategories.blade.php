@@ -51,25 +51,7 @@
                                 </form>
                             </td>
                         </tr>
-                        <x-modal.index id="subcategory-edit-{{$subcategory->id}}">
-                            <x-slot name="title">
-                                {{__('Update subcategory')}} {{$subcategory->name}}
-                            </x-slot>
-                            <x-slot name="body">
-                                <form action="{{route('admin.subcategories.update', $subcategory->id)}}" id="update-subcategory-{{$subcategory->id}}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">{{__('Name')}}</label>
-                                        <input type="text" name="name" class="form-control" value="{{$subcategory->name}}" id="name">
-                                        <input type="hidden" name="category_id" value="{{$category->id}}">
-                                    </div>
-                                </form>
-                            </x-slot>
-                            <x-slot name="footer">
-                                <button type="submit" form="update-subcategory-{{$subcategory->id}}" class="btn btn-primary">{{__('Update')}}</button>
-                            </x-slot>
-                        </x-modal.index>
+                        <x-subcategories.edit :category="$category" :subcategory="$subcategory"/>
                     @endforeach
                     </tbody>
                 </table>
@@ -84,22 +66,5 @@
             </div>
         @endif
     </div>
-    <x-modal.index id="subcategory-create">
-        <x-slot name="title">
-            {{__('Create new subcategory')}}
-        </x-slot>
-        <x-slot name="body">
-            <form action="{{route('admin.subcategories.store')}}" id="create-subcategory" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="name" class="col-form-label">{{__('Name')}}</label>
-                    <input type="text" name="name" class="form-control" id="name">
-                </div>
-                <input type="hidden" name="category_id" value="{{$category->id}}">
-            </form>
-        </x-slot>
-        <x-slot name="footer">
-            <button type="submit" form="create-subcategory" class="btn btn-primary">{{__('Create')}}</button>
-        </x-slot>
-    </x-modal.index>
+    <x-subcategories.create :category="$category"/>
 @endsection

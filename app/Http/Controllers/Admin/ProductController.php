@@ -15,7 +15,9 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        return view('pages.admin.products.index');
+        $products = Product::paginate(15);
+
+        return view('pages.admin.products.index', compact('products'));
     }
 
     public function store(StoreRequest $request): RedirectResponse

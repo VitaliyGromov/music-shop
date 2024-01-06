@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $in_stock На складе ли товар
  * @property $description Описание
  * @property $price Цена
- * @property $characteristics
  * @property $category_id
  * @property $brand_id
 */
