@@ -14,7 +14,7 @@ class CategorySubcategory extends Component
     public $selectedCategory = null;
     public $selectedSubcategory = null;
 
-    public function render(): View
+    public function render()
     {
         return view('livewire.category-subcategory');
     }
