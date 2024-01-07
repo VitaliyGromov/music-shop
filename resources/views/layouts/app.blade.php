@@ -14,8 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
+    <livewire:styles />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -25,6 +25,6 @@
             @yield('content')
         </main>
     </div>
-    @livewireScripts
+    <livewire:scripts />
 </body>
 </html>

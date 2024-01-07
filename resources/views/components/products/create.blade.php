@@ -25,6 +25,7 @@
                 <label for="in_stock" class="form-check-label">{{__('Is in stock?')}}</label>
                 <input type="checkbox" name="in_stock" class="form-check-input" id="in_stock">
             </div>
+            <livewire:categories-subcategories />
         </form>
     </x-slot>
     <x-slot name="footer">

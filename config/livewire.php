@@ -156,8 +156,4 @@ return [
     */
 
     'pagination_theme' => 'tailwind',
-
-    'components' => [
-        'category-subcategory' => \App\Livewire\CategorySubcategory::class
-    ]
 ];
