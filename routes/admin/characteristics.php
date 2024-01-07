@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('characteristics')->group(function () {
     Route::post('/', [CharacteristicController::class, 'store'])->name('admin.characteristics.store');
-    Route::put('/{category}', [CharacteristicController::class, 'update'])->name('admin.characteristics.update');
-    Route::delete('/{category}', [CharacteristicController::class, 'destroy'])->name('admin.characteristics.destroy');
+    Route::put('/{characteristic}', [CharacteristicController::class, 'update'])->name('admin.characteristics.update');
+    Route::delete('/{characteristic}', [CharacteristicController::class, 'destroy'])->name('admin.characteristics.destroy');
 });
 
 Route::get('categories/{category}/characteristics', [CharacteristicController::class, 'index'])->name('admin.characteristics.index');

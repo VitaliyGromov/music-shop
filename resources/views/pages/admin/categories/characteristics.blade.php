@@ -2,15 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row mb-3">
-            <h1 class="h1">{{$category->name}}</h1>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="btn btn-secondary me-3" href="{{route('admin.subcategories.index', $category->id)}}">{{__('Subcategories')}}</a>
-            <a class="btn btn-secondary" href="{{route('admin.characteristics.index', $category->id)}}">{{__('Characteristics')}}</a>
-        </nav>
+        <x-categories.page-header :category="$category"/>
         @if($category->characteristics->isEmpty())
-            <x-empty-items>
+            <x-common.empty-items>
                 <x-slot name="title">
                     {{__('no characteristics added yet for category ')}} {{$category->name}}
                 </x-slot>
@@ -19,7 +13,7 @@
                         {{__('Add')}}
                     </button>
                 </x-slot>
-            </x-empty-items>
+            </x-common.empty-items>
         @else
             <div class="row justify-content-center">
                 <table class="table">
@@ -37,18 +31,13 @@
                             <th>{{$characteristic->id}}</th>
                             <td>{{$characteristic->name}}</td>
                             <td>
-                                <button class="btn btn-primary">
+                                <x-characteristics.edit :characteristic="$characteristic" :category="$category"/>
+                                <button class="btn btn-primary" data-bs-target="#characteristic-edit-{{$characteristic->id}}" data-bs-toggle="modal">
                                     {{__('Edit')}}
                                 </button>
                             </td>
                             <td>
-                                <form action="{{route('admin.characteristics.destroy', $characteristic->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">
-                                        {{__('Delete')}}
-                                    </button>
-                                </form>
+                                <x-common.delete-form route="{{route('admin.characteristics.destroy', $characteristic->id)}}"/>
                             </td>
                         </tr>
                     @endforeach

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         @if($brands->isEmpty())
-            <x-empty-items>
+            <x-common.empty-items>
                 <x-slot name="title">
                     {{__('no brands added yet')}}
                 </x-slot>
@@ -12,7 +12,7 @@
                         {{__('Add')}}
                     </button>
                 </x-slot>
-            </x-empty-items>
+            </x-common.empty-items>
         @else
             <div class="row justify-content-center">
                 <table class="table">
@@ -35,13 +35,7 @@
                                 </button>
                             </td>
                             <td>
-                                <form action="{{route('admin.brands.destroy', $brand->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">
-                                        {{__('Delete')}}
-                                    </button>
-                                </form>
+                                <x-common.delete-form route="{{route('admin.brands.destroy', $brand->id)}}"/>
                             </td>
                         </tr>
                         <x-brands.edit :brand="$brand"/>

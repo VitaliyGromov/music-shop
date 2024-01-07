@@ -20,11 +20,7 @@
     <div id="app">
         <x-header.header/>
         <main class="py-4">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
+            <x-common.alert/>
             @yield('content')
         </main>
     </div>

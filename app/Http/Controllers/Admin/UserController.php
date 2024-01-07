@@ -11,6 +11,8 @@ use App\Http\Requests\Admin\User\StoreRequest;
 use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
@@ -18,7 +20,7 @@ class UserController extends Controller
 {
     public function index(): View
     {
-        $users = User::paginate(15);
+        $users = User::paginate();
 
         $roles = Role::where('name', '!=', 'User')->get();
 
@@ -45,6 +47,10 @@ class UserController extends Controller
 
     public function destroy(User $user): RedirectResponse
     {
+        if (Auth::id() === $user->id){
+            return redirect()->back()->withErrors(['msg' => 'You can not delete yourself']);
+        }
+
         $user->delete();
 
         return redirect()->back();

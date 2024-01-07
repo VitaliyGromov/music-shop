@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         @if($categories->isEmpty())
-            <x-empty-items>
+            <x-common.empty-items>
                 <x-slot name="title">
                     {{__('Пока не добавлено ни одной категории')}}
                 </x-slot>
@@ -12,7 +12,7 @@
                         {{__('Add')}}
                     </button>
                 </x-slot>
-            </x-empty-items>
+            </x-common.empty-items>
         @else
             <div class="row justify-content-center">
                 <table class="table">
