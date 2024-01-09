@@ -14,6 +14,8 @@ class StoreRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
+        $this->request->remove('category_id');
+
         $this->merge([
             'in_stock' => $this->has('in_stock'),
         ]);
@@ -25,8 +27,9 @@ class StoreRequest extends FormRequest
             'in_stock' => ['nullable', 'boolean'],
             'description' => ['required', 'string'],
             'price' => ['required', 'integer', 'max:2147483647'],
-            'category_id' => ['required', 'integer', 'exists:subcategories,id'],
+            'subcategory_id' => ['required', 'integer', 'exists:subcategories,id'],
             'brand_id' => ['required', 'integer', 'exists:brands,id'],
+            'images.*' => ['required','mimes:jpg,jpeg,png','max:2000']
         ];
     }
 }

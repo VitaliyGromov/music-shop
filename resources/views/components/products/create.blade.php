@@ -3,7 +3,7 @@
         {{__('Create new product')}}
     </x-slot>
     <x-slot name="body">
-        <form action="{{route('admin.products.store')}}" id="create-product" method="POST">
+        <form action="{{route('admin.products.store')}}" id="create-product" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name" class="col-form-label">{{__('Product name')}}</label>
@@ -19,11 +19,15 @@
             </div>
             <div class="form-group">
                 <label for="images" class="col-form-label">{{__('Images')}}</label>
-                <input type="file" class="form-control" name="images" multiple id="images">
+                <input type="file" class="form-control" name="images[]" id="images" multiple>
             </div>
             <div class="form-check mt-3">
                 <label for="in_stock" class="form-check-label">{{__('Is in stock?')}}</label>
                 <input type="checkbox" name="in_stock" class="form-check-input" id="in_stock">
+            </div>
+            <div class="form-group">
+                <label for="brand_id" class="col-form-label">{{__('Brand')}}</label>
+                <x-common.selects.brands/>
             </div>
             <livewire:categories-subcategories />
         </form>

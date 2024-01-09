@@ -45,10 +45,10 @@
                                 </button>
                             </td>
                             <td>
-                                <x-common.delete-form route="{{route('admin.users.destroy', $user->id)}}"/>
+                                <x-common.delete-form route="{{route('admin.users.destroy', $user->id)}}" modalId="{{$user->id}}"/>
                             </td>
                         </tr>
-                        <x-users.edit :user="$user" :roles="$roles"/>
+                        <x-users.edit :user="$user"/>
                     @endforeach
                     </tbody>
                 </table>
@@ -63,5 +63,5 @@
             </div>
         @endif
     </div>
-    <x-users.create :roles="$roles"/>
+    <x-users.create/>
 @endsection

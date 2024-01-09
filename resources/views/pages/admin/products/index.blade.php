@@ -18,19 +18,32 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <td>
-                            {{__('id')}}
-                        </td>
-                        <td>
-                            {{__('name')}}
-                        </td>
-                        <td>
-                            {{__('description')}}
-                        </td>
+                        <td>{{__('id')}}</td>
+                        <td>{{__('name')}}</td>
+                        <td>{{__('description')}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </thead>
+                    @foreach($products as $product)
+                        <tr>
+                            <td>{{$product->id}}</td>
+                            <td>{{$product->name}}</td>
+                            <td>{{$product->description}}</td>
+                            <td>
+                                <button class="btn btn-primary">{{__('Edit')}}</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
+            {{$products->links()}}
+            <button class="btn btn-primary" data-bs-target="#product-create" data-bs-toggle="modal">
+                {{__('Add')}}
+            </button>
         @endif
     </div>
     <x-products.create/>

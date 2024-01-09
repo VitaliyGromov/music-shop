@@ -12,9 +12,7 @@ use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -22,9 +20,7 @@ class UserController extends Controller
     {
         $users = User::paginate();
 
-        $roles = Role::where('name', '!=', 'User')->get();
-
-        return view('pages.admin.users.index', compact(['users', 'roles']));
+        return view('pages.admin.users.index', compact('users'));
     }
 
     public function store(StoreRequest $request, StoreAction $action): RedirectResponse

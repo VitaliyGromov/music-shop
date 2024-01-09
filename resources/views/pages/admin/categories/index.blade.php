@@ -37,13 +37,7 @@
                                 </button>
                             </td>
                             <td>
-                                <form action="{{route('admin.categories.destroy', $category->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">
-                                        {{__('Delete')}}
-                                    </button>
-                                </form>
+                                <x-common.delete-form route="{{route('admin.categories.destroy', $category->id)}}" modalId="{{$category->id}}"/>
                             </td>
                         </tr>
                         <x-categories.edit :category="$category"/>

@@ -22,12 +22,8 @@
                 <input type="email" name="email" class="form-control" id="email">
             </div>
             <div class="form-group">
-                <label for="role" class="col-form-label">{{__('Role')}}</label>
-                <select id="role" name="role_id" class="form-control">
-                    @foreach($roles as $role)
-                        <option value="{{$role->id}}">{{$role->name}}</option>
-                    @endforeach
-                </select>
+                <label for="role_id" class="col-form-label">{{__('Role')}}</label>
+                <x-common.selects.roles/>
             </div>
         </form>
     </x-slot>

@@ -23,12 +23,8 @@
                 <input type="email" name="email" class="form-control" value="{{$user->email}}" id="email">
             </div>
             <div class="form-group">
-                <label for="role" class="col-form-label">{{__('Role')}}</label>
-                <select id="role" name="role_id" class="form-control">
-                    @foreach($roles as $role)
-                        <option value="{{$role->id}}">{{$role->name}}</option>
-                    @endforeach
-                </select>
+                <label for="role_шв" class="col-form-label">{{__('Role')}}</label>
+                <x-common.selects.roles/>
             </div>
             <div class="form-check mt-2">
                 <label for="active" class="form-check-label">{{__('Active')}}</label>

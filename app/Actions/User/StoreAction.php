@@ -28,8 +28,10 @@ class StoreAction
             ]);
 
             $user->assignRole($role);
-
-            Mail::to($user)->send(new UserCreatedMail($user, $password));
         });
+
+        $user = User::where('email', $validated['email'])->first();
+
+        Mail::to($user)->send(new UserCreatedMail($user, $password));
     }
 }

@@ -9,6 +9,8 @@ use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Http\Requests\Admin\Product\UpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -24,7 +26,12 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
-        Product::create($validated);
+        $product = Product::create(Arr::except($validated, 'images'));
+
+        foreach ($request->file('images') as $image){
+            $product->addMedia($image)
+                ->toMediaCollection('products');
+        }
 
         return redirect()->back();
     }

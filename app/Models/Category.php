@@ -26,7 +26,7 @@ class Category extends Model
         return $this->HasMany(Subcategory::class);
     }
 
-    public function characteristics()
+    public function characteristics(): HasMany
     {
         return $this->hasMany(Characteristic::class);
     }

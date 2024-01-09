@@ -35,7 +35,7 @@
                                 </button>
                             </td>
                             <td>
-                                <x-common.delete-form route="{{route('admin.brands.destroy', $brand->id)}}"/>
+                                <x-common.delete-form route="{{route('admin.brands.destroy', $brand->id)}}" modalId="{{$brand->id}}"/>
                             </td>
                         </tr>
                         <x-brands.edit :brand="$brand"/>

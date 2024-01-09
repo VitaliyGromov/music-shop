@@ -3,12 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use Livewire\Component;
 
 class CategoriesSubcategories extends Component
 {
-    public $categories = null;
-    public $subcategories = null;
+    public $categories = [];
+    public $subcategories = [];
     public $selectedCategory = null;
     public $selectedSubcategory = null;
 
@@ -22,13 +23,13 @@ class CategoriesSubcategories extends Component
         return view('livewire.categories-subcategories');
     }
 
-    public function updatedSelectedCategory()
+    public function updatedSelectedCategory($category)
     {
-
-    }
-
-    public function updatedSelectedSubcategory()
-    {
-
+        if (!is_null($this->selectedCategory)){
+            $this->subcategories = Subcategory::where('category_id', $category)->get();
+        } else {
+            $this->selectedCategory = null;
+            $this->subcategories = [];
+        }
     }
 }
