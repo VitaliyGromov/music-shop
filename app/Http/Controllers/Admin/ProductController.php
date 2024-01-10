@@ -9,7 +9,6 @@ use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Http\Requests\Admin\Product\UpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
 
@@ -20,6 +19,11 @@ class ProductController extends Controller
         $products = Product::paginate();
 
         return view('pages.admin.products.index', compact('products'));
+    }
+
+    public function show(Product $product): View
+    {
+        return view('pages.admin.products.show', compact('product'));
     }
 
     public function store(StoreRequest $request): RedirectResponse

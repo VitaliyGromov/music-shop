@@ -27,14 +27,16 @@
                     </thead>
                     @foreach($products as $product)
                         <tr>
-                            <td>{{$product->id}}</td>
+                            <td>
+                                <a href="{{route('admin.products.show', $product->id)}}">{{$product->id}}</a>
+                            </td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
                             <td>
                                 <button class="btn btn-primary">{{__('Edit')}}</button>
                             </td>
                             <td>
-                                <button class="btn btn-danger">Delete</button>
+                                <x-common.delete-form route="{{route('admin.products.destroy', $product->id)}}" modalId="{{$product->id}}"/>
                             </td>
                         </tr>
                     @endforeach
