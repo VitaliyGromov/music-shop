@@ -19,7 +19,6 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">{{__('id')}}</th>
                         <th scope="col">{{__('Name')}}</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -28,8 +27,11 @@
                     <tbody>
                     @foreach($category->characteristics as $characteristic)
                         <tr>
-                            <th>{{$characteristic->id}}</th>
-                            <td>{{$characteristic->name}}</td>
+                            <td>
+                                <a href="{{route('admin.characteristics.show', $characteristic->id)}}" class="link-offset-2 link-underline link-underline-opacity-0">
+                                    {{$characteristic->name}}
+                                </a>
+                            </td>
                             <td>
                                 <x-characteristics.edit :characteristic="$characteristic" :category="$category"/>
                                 <button class="btn btn-primary" data-bs-target="#characteristic-edit-{{$characteristic->id}}" data-bs-toggle="modal">

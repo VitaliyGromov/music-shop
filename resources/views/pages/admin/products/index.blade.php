@@ -21,6 +21,9 @@
                         <td>{{__('id')}}</td>
                         <td>{{__('name')}}</td>
                         <td>{{__('description')}}</td>
+                        <td>{{__('Brand')}}</td>
+                        <td>{{__('Price')}}</td>
+                        <td>{{__('Stock')}}</td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -32,6 +35,9 @@
                             </td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
+                            <td>{{$product->brand->name}}</td>
+                            <td>{{$product->price}}</td>
+                            <td>{{$product->in_stock ? 'Yes' : 'No'}}</td>
                             <td>
                                 <button class="btn btn-primary">{{__('Edit')}}</button>
                             </td>

@@ -17,7 +17,12 @@ class CharacteristicController extends Controller
     {
         $characteristics = $category->characteristics()->paginate(15);
 
-        return view('pages.admin.categories.characteristics', compact(['category', 'characteristics']));
+        return view('pages.admin.characteristics.index', compact(['category', 'characteristics']));
+    }
+
+    public function show(Characteristic $characteristic): View
+    {
+        return view('pages.admin.characteristics.show', compact('characteristic'));
     }
 
     public function store(StoreRequest $request): RedirectResponse

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('characteristic_products', function (Blueprint $table) {
             $table->foreignId('product_id');
-            $table->foreignId('characteristic_id');
+            $table->foreignId('characteristic_value_id');
             $table->timestamps();
         });
     }
