@@ -20,7 +20,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property $in_stock На складе ли товар
  * @property $description Описание
  * @property $price Цена
- * @property $category_id
+ * @property $subcategory_id
  * @property $brand_id
  */
 class Product extends Model implements HasMedia

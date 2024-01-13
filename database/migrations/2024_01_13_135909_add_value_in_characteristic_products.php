@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('characteristic_values', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('characteristic_id');
-            $table->timestamps();
+        Schema::table('characteristic_products', function (Blueprint $table) {
+            $table->string('value');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('characteristic_values');
+        Schema::table('characteristic_products', function (Blueprint $table) {
+            $table->removeColumn('value');
+        });
     }
 };
