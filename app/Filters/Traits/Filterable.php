@@ -2,13 +2,11 @@
 
 namespace App\Filters\Traits;
 
-use ReflectionClass;
-
 trait Filterable
 {
     public static function getFilterClassName(): string
     {
-        $modelName = (new ReflectionClass(static::class))->getShortName();
+        $modelName = class_basename(static::class);
 
         return $modelName . 'Filter';
     }
