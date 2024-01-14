@@ -2,18 +2,24 @@
 
 @section('content')
     <div class="container">
-        <p class="h1">
+        <h1 class="d-inline mb-1">
             {{$product->name}}
-        </p>
+        </h1>
+        <div class="d-inline">
+            <button class="btn btn-primary mb-3" data-bs-target="#product-edit" data-bs-toggle="modal">
+                {{__('Edit')}}
+            </button>
+            <x-products.edit :product="$product"/>
+        </div>
         <div class="bg-secondary text-white w-25 p-2 rounded-3">
             <p class="h4">
-                Brand: {{$product->brand->name}}
+                {{__('Brand')}}: {{$product->brand->name}}
             </p>
             <p class="h4">
-                Category: {{$product->subcategory->category->name}}
+                {{__('Category')}}: {{$product->subcategory->category->name}}
             </p>
             <p class="h4">
-                Subcategory: {{$product->subcategory->name}}
+                {{__('Subcategory')}}: {{$product->subcategory->name}}
             </p>
         </div>
         <p class="h2 mt-3">

@@ -15,6 +15,9 @@ class CategoriesSubcategories extends Component
 
     public function mount()
     {
+        if (!is_null($this->selectedCategory)) {
+            $this->subcategories = Subcategory::where('category_id', $this->selectedCategory)->get();
+        }
         $this->categories = Category::all();
     }
 

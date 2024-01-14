@@ -11,10 +11,10 @@
     @if (!is_null($selectedCategory))
         <div class="mb-3">
             <label for="subcategory_id" class="col-md-4 col-form-label text-md-right">{{ __('Subcategory') }}</label>
-            <select wire:model="selectedSubcategory" name="subcategory_id" class="form-control" id="subcategory_id">
-                <option value="">{{__('- Choose subcategory -')}}</option>
+            <select wire:model.live="selectedSubcategory" name="subcategory_id" class="form-control" id="subcategory_id">
+                <option value="" selected>{{__('- Choose subcategory -')}}</option>
                 @foreach($subcategories as $subcategory)
-                    <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+                    <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                 @endforeach
             </select>
         </div>

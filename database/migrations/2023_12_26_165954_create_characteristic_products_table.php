@@ -18,6 +18,8 @@ return new class extends Migration
                 ->on('products')
                 ->onDelete('cascade');
             $table->foreignId('characteristic_id');
+            $table->string('value');
+            $table->unique(['product_id', 'characteristic_id', 'value'], 'product_characteristic_value');
             $table->timestamps();
         });
     }

@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types=1);
+namespace {{ namespace }};
 
-namespace App\Mail\Admin;
-
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,17 +9,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class UserCreatedMail extends Mailable implements ShouldQueue
+class {{ class }} extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(
-        public User $user,
-        public string $password,
-    ){}
+    public function __construct()
+    {
+        //
+    }
 
     /**
      * Get the message envelope.
@@ -30,7 +27,7 @@ class UserCreatedMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Created Mail',
+            subject: '{{ subject }}',
         );
     }
 
@@ -40,7 +37,17 @@ class UserCreatedMail extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.admin.user.user-created',
+            markdown: '{{ view }}',
         );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
     }
 }
