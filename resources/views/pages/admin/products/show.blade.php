@@ -22,12 +22,12 @@
         @if($product->subcategory->category->characteristics->isEmpty())
             <x-common.empty-items>
                 <x-slot name="title">
-                    {{__('No characteristics')}}
+                    {{__('Product`s category has no characteristics')}}
                 </x-slot>
                 <x-slot name="button">
-                    <button class="btn btn-primary">
-                        {{__('Add characteristic')}}
-                    </button>
+                    <a class="btn btn-primary" href="{{route('admin.categories.show', $product->subcategory->category->id)}}">
+                        {{__('Go to category page')}}
+                    </a>
                 </x-slot>
             </x-common.empty-items>
         @else
@@ -64,23 +64,13 @@
                 </x-slot>
             </x-common.empty-items>
         @else
-            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @foreach($product->getMedia('products') as $media)
-                        <div class="carousel-item active">
-                            <img class="img-fluid" src="{{$media->getUrl()}}" alt="First slide" width="500" height="500">
-                        </div>
-                    @endforeach
-                </div>
-                <a class="carousel-control-prev" href="#carousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+            <x-common.carousel>
+                @foreach($product->getMedia('products') as $media)
+                    <div class="carousel-item active">
+                        <img class="img-fluid" src="{{$media->getUrl()}}" alt="First slide" width="500" height="500">
+                    </div>
+                @endforeach
+            </x-common.carousel>
         @endif
     </div>
 @endsection

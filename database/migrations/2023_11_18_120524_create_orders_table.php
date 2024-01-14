@@ -19,7 +19,9 @@ return new class extends Migration
             $table->integer('amount');
             $table->string('status');
             $table->string('payment_type');
-            $table->foreignId('courier_id')->constrained('users');
+            $table->foreignId('courier_id')
+                ->references('id')
+                ->on('users');
             $table->date('delivery_date');
             $table->timestamps();
         });

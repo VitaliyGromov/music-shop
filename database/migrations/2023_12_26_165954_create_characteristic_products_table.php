@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('characteristic_products', function (Blueprint $table) {
-            $table->foreignId('product_id');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
             $table->foreignId('characteristic_id');
             $table->timestamps();
         });
