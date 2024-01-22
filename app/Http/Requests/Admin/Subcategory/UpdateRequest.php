@@ -18,7 +18,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'category_id' => ['required', 'int', 'exists:categories,id']
+            'category_id' => ['required', 'int', 'exists:categories,id'],
         ];
     }
 }

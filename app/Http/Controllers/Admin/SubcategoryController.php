@@ -20,6 +20,12 @@ class SubcategoryController extends Controller
 
         return view('pages.admin.categories.subcategories', compact(['category', 'subcategories']));
     }
+
+    public function show(Subcategory $subcategory): View
+    {
+        return view('pages.admin.subcategories.show', compact('subcategory'));
+    }
+
     public function store(StoreRequest $request): RedirectResponse
     {
         $validated = $request->validated();

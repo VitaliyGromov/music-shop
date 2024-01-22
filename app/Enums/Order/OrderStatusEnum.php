@@ -6,4 +6,5 @@ namespace App\Enums\Order;
 
 enum OrderStatusEnum
 {
+
 }

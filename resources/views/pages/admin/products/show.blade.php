@@ -16,7 +16,10 @@
                 {{__('Brand')}}: {{$product->brand->name}}
             </p>
             <p class="h4">
-                {{__('Category')}}: {{$product->subcategory->category->name}}
+                {{__('Category')}}:
+                <a href="{{route('admin.categories.show', $product->subcategory->category->id)}}" class="link-light">
+                    {{$product->subcategory->category->name}}
+                </a>
             </p>
             <p class="h4">
                 {{__('Subcategory')}}: {{$product->subcategory->name}}
@@ -25,7 +28,7 @@
         <p class="h2 mt-3">
             {{__('Characteristics')}}
         </p>
-        @if($product->subcategory->category->characteristics->isEmpty())
+        @if($product->subcategory->characteristics->isEmpty())
             <x-common.empty-items>
                 <x-slot name="title">
                     {{__('Product`s category has no characteristics')}}
@@ -39,7 +42,7 @@
         @else
             <table class="table">
                 <tbody>
-                @foreach($product->subcategory->category->characteristics as $characteristic)
+                @foreach($product->subcategory->characteristics as $characteristic)
                     <tr>
                         <td>
                             {{$characteristic->name}}

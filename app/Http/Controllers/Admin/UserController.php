@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function destroy(User $user): RedirectResponse
     {
-        if (Auth::id() === $user->id){
+        if (Auth::id() === $user->id) {
             return redirect()->back()->withErrors(['msg' => 'You can not delete yourself']);
         }
 

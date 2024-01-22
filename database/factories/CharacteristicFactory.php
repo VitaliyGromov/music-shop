@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Characteristic;
+use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +22,7 @@ class CharacteristicFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'category_id' => Category::withoutEvents(fn() => Category::factory()->create()->id)
+            'subcategory_id' => Subcategory::withoutEvents(fn () => Subcategory::factory()->create()->id),
         ];
     }
 }

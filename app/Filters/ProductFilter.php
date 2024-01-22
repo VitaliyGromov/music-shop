@@ -1,16 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filters;
 
-class ProductFilter
+use App\Filters\Core\AbstractFilter;
+
+class ProductFilter extends AbstractFilter
 {
-    public function name(): string
+    public function name(string $name)
     {
-        return 'search by name';
+
     }
 
-    public static function filter(): string
+    public function brand_id(int $brandId)
     {
-        return 'filters';
+
+    }
+
+    public function price(int $price)
+    {
+
+    }
+
+    public function description(string $description)
+    {
+
     }
 }

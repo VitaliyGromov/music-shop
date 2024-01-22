@@ -9,13 +9,16 @@ use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Http\Requests\Admin\Product\UpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        //dd(Product::filter(Product::query()->getQuery()));
+
         $products = Product::paginate();
 
         return view('pages.admin.products.index', compact('products'));
@@ -32,7 +35,7 @@ class ProductController extends Controller
 
         $product = Product::create(Arr::except($validated, 'images'));
 
-        foreach ($request->file('images') as $image){
+        foreach ($request->file('images') as $image) {
             $product->addMedia($image)
                 ->toMediaCollection('products');
         }

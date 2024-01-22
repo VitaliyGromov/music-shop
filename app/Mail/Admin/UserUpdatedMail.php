@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail\Admin;
 
 use App\Models\User;
@@ -19,7 +21,7 @@ class UserUpdatedMail extends Mailable implements ShouldQueue
      */
     public function __construct(
         public User $user
-    ){}
+    ) {}
 
     /**
      * Get the message envelope.

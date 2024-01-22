@@ -2,11 +2,13 @@
 
 @section('content')
     <div class="container">
-        <x-categories.page-header :category="$category"/>
-        @if($category->characteristics->isEmpty())
+        <h1>
+            {{__('Characteristics')}}
+        </h1>
+        @if($subcategory->characteristics->isEmpty())
             <x-common.empty-items>
                 <x-slot name="title">
-                    {{__('no characteristics added yet for category ')}} {{$category->name}}
+                    {{__('no characteristics added yet for subcategory ')}} {{$subcategory->name}}
                 </x-slot>
                 <x-slot name="button">
                     <button class="btn btn-primary" data-bs-target="#characteristic-create" data-bs-toggle="modal">
@@ -25,7 +27,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($category->characteristics as $characteristic)
+                    @foreach($subcategory->characteristics as $characteristic)
                         <tr>
                             <td>
                                 <a href="{{route('admin.characteristics.show', $characteristic->id)}}" class="link-offset-2 link-underline link-underline-opacity-0">
@@ -33,7 +35,7 @@
                                 </a>
                             </td>
                             <td>
-                                <x-characteristics.edit :characteristic="$characteristic" :category="$category"/>
+{{--                                <x-characteristics.edit :characteristic="$characteristic" :category="$category"/>--}}
                                 <button class="btn btn-primary" data-bs-target="#characteristic-edit-{{$characteristic->id}}" data-bs-toggle="modal">
                                     {{__('Edit')}}
                                 </button>
@@ -56,5 +58,5 @@
             </div>
         @endif
     </div>
-    <x-characteristics.create :category="$category"/>
+{{--    <x-characteristics.create :category="$category"/>--}}
 @endsection

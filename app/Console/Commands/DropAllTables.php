@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -26,7 +28,7 @@ class DropAllTables extends Command
      */
     public function handle(): void
     {
-        if (!$this->confirm('ARE YOU REALLY WANT TO DROP ALL TABLES IN DATABASE? [y|N]')){
+        if (! $this->confirm('ARE YOU REALLY WANT TO DROP ALL TABLES IN DATABASE? [y|N]')) {
             exit('Drop Tables command aborted');
         }
 

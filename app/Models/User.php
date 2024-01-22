@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,7 +17,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string      $name       Имя пользователя
  * @property string      $lastname   Фамилия пользователя
  * @property ?string     $middlename Отчество
- * @property bool     $active     Активен ли пользователь
+ * @property bool        $active     Активен ли пользователь
  * @property string      $email      Адрес электронной почты
  */
 class User extends Authenticatable

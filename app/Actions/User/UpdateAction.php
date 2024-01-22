@@ -24,7 +24,7 @@ class UpdateAction
             $user->syncRoles($role);
         });
 
-        if (!$validated['active']){
+        if (! $validated['active']) {
             $user = User::where('email', $validated['email'])->first();
 
             Mail::to($user)->send(new UserUpdatedMail($user));

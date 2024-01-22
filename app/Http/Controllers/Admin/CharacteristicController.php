@@ -1,23 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Characteristic\StoreRequest;
 use App\Http\Requests\Admin\Characteristic\UpdateRequest;
-use App\Models\Category;
 use App\Models\Characteristic;
+use App\Models\Subcategory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CharacteristicController extends Controller
 {
-    public function index(Category $category): View
+    public function index(Subcategory $subcategory): View
     {
-        $characteristics = $category->characteristics()->paginate(15);
+        $characteristics = $subcategory->characteristics()->paginate(15);
 
-        return view('pages.admin.characteristics.index', compact(['category', 'characteristics']));
+        return view('pages.admin.characteristics.index', compact(['subcategory', 'characteristics']));
     }
 
     public function show(Characteristic $characteristic): View

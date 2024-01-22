@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Admin\Characteristic;
 
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -16,7 +18,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'category_id' => ['required', 'int', 'exists:categories,id']
+            'subcategory_id' => ['required', 'integer', 'exists:subcategories,id'],
         ];
     }
 }

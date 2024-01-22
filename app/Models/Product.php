@@ -25,9 +25,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Product extends Model implements HasMedia
 {
+    use Filterable;
     use HasFactory;
     use InteractsWithMedia;
-    use Filterable;
 
     protected $guarded = [];
 

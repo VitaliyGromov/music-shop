@@ -22,7 +22,7 @@ class UserCreatedMail extends Mailable implements ShouldQueue
     public function __construct(
         public User $user,
         public string $password,
-    ){}
+    ) {}
 
     /**
      * Get the message envelope.

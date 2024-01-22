@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Brand;
@@ -24,8 +26,8 @@ class ProductFactory extends Factory
             'description' => fake()->text,
             'in_stock' => fake()->boolean,
             'price' => fake()->numerify,
-            'subcategory_id' => Subcategory::withoutEvents(fn() => Subcategory::factory()->create()->id),
-            'brand_id' => Brand::withoutEvents(fn() => Brand::factory()->create()->id),
+            'subcategory_id' => Subcategory::withoutEvents(fn () => Subcategory::factory()->create()->id),
+            'brand_id' => Brand::withoutEvents(fn () => Brand::factory()->create()->id),
         ];
     }
 }

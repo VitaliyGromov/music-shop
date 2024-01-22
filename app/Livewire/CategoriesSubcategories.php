@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire;
 
 use App\Models\Category;
@@ -9,13 +11,16 @@ use Livewire\Component;
 class CategoriesSubcategories extends Component
 {
     public $categories = [];
+
     public $subcategories = [];
+
     public $selectedCategory = null;
+
     public $selectedSubcategory = null;
 
     public function mount()
     {
-        if (!is_null($this->selectedCategory)) {
+        if (! is_null($this->selectedCategory)) {
             $this->subcategories = Subcategory::where('category_id', $this->selectedCategory)->get();
         }
         $this->categories = Category::all();
@@ -28,7 +33,7 @@ class CategoriesSubcategories extends Component
 
     public function updatedSelectedCategory($category)
     {
-        if (!is_null($this->selectedCategory)){
+        if (! is_null($this->selectedCategory)) {
             $this->subcategories = Subcategory::where('category_id', $category)->get();
         } else {
             $this->selectedCategory = null;
