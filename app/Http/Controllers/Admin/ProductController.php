@@ -17,9 +17,7 @@ class ProductController extends Controller
 {
     public function index(Request $request): View
     {
-        //dd(Product::filter(Product::query()->getQuery()));
-
-        $products = Product::paginate();
+        $products = Product::filter($request->all())->paginate();
 
         return view('pages.admin.products.index', compact('products'));
     }

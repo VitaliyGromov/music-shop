@@ -6,14 +6,11 @@ namespace App\Filters\Traits;
 
 use App\Filters\Core\AbstractFilter;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Support\Collection;
 
 trait Filterable
 {
-    public static function getTableName(): string
-    {
-        return ((new self)->getTable());
-    }
-
     public static function getFilterClassName(): string
     {
         $modelName = class_basename(static::class);
@@ -35,6 +32,11 @@ trait Filterable
         $filter->from = self::getTableName();
     }
 
+    public static function getTableName(): string
+    {
+        return ((new self)->getTable());
+    }
+
     public static function getFilterClassMethods(AbstractFilter $filter): array
     {
         $reflection = new \ReflectionClass($filter);
@@ -50,10 +52,19 @@ trait Filterable
         return $methods;
     }
 
-    public static function filter(Builder $builder)
+    public static function filter(array $requestData): EloquentBuilder | Collection
     {
-        $filter = self::createInstanceOfFilterClass($builder);
+        /** @var EloquentBuilder $query */
+        $query = ('App\\Models\\' . class_basename(static::class))::query();
 
-        return $filter->from;
+        if (collect($requestData)->isEmpty()){
+            return $query;
+        }
+
+        foreach ($requestData as $key => $value){
+            $query->where($key, $value);
+        }
+
+        return $query;
     }
 }
