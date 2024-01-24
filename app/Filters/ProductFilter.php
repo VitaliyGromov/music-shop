@@ -8,28 +8,28 @@ use App\Filters\Core\AbstractFilter;
 
 class ProductFilter extends AbstractFilter
 {
-    public function name(string $name): static
+    public function name($name): static
     {
-        return $this->where('name', $name);
+        return $this->where('name', 'ILIKE', "%$name%");
     }
 
-    public function brand_id(int $brandId): static
+    public function brand_id($brandId): static
     {
         return $this->where('brand_id', $brandId);
     }
 
-    public function price(int $price): static
+    public function price($price): static
     {
         return $this->where('price', $price);
     }
 
-    public function description(string $description): static
+    public function description($description): static
     {
         return $this->where('description', $description);
     }
 
-    public function check()
+    public function in_stock($inStock): static
     {
-        return 'check';
+        return $this->where('in_stock', $inStock);
     }
 }

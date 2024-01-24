@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Filters\Traits;
 
 use App\Filters\Core\AbstractFilter;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 
 trait Filterable
 {
@@ -52,7 +52,7 @@ trait Filterable
         return $methods;
     }
 
-    public static function filter(array $requestData): EloquentBuilder | Collection
+    public static function filter(array $requestData)
     {
         /** @var EloquentBuilder $query */
         $query = ('App\\Models\\' . class_basename(static::class))::query();
@@ -61,8 +61,12 @@ trait Filterable
             return $query;
         }
 
+        $filter = self::createInstanceOfFilterClass($query->getQuery());
+
+        $filter->setModel($query->getModel());
+
         foreach ($requestData as $key => $value){
-            $query->where($key, $value);
+            $query = $filter->$key($value);
         }
 
         return $query;

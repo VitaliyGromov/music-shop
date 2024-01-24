@@ -10,12 +10,13 @@ use App\Http\Requests\Admin\Category\UpdateRequest;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $categories = Category::paginate();
+        $categories = Category::filter($request->all())->paginate();
 
         return view('pages.admin.categories.index', compact('categories'));
     }
