@@ -5,36 +5,25 @@ declare(strict_types=1);
 namespace App\Filters\Traits;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
 trait Filterable
 {
-    public static function filter(array $requestData)
+    public static function filter()
     {
-        /** @var EloquentBuilder $query */
-        $query = ('App\\Models\\' . class_basename(static::class))::query();
+        $model = static::query()->getModel();
+        $filterClass = self::createInstanceOfFilterClass($model);
 
-        if (collect($requestData)->isEmpty()){
-            return $query;
-        }
-
-        $filter = self::createInstanceOfFilterClass($query->getQuery());
-
-        $filter->setModel($query->getModel());
-
-        foreach ($requestData as $key => $value){
-            $query = $filter->$key($value);
-        }
-
-        return $query;
+        return $filterClass->handle();
     }
 
-    public static function createInstanceOfFilterClass(Builder $builder): object
+    private static function createInstanceOfFilterClass(Model $model): object
     {
-        return new (self::getFilterClassName())($builder);
+        return new (self::getFilterClassName())($model);
     }
 
-    public static function getFilterClassName(): string
+    private static function getFilterClassName(): string
     {
         $modelName = class_basename(static::class);
 

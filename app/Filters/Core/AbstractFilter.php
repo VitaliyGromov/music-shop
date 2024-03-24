@@ -1,15 +1,20 @@
 <?php
 
 namespace App\Filters\Core;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Pipeline;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Query\Builder as QueryBuilder;
-
-abstract class AbstractFilter extends Builder
+abstract class AbstractFilter
 {
-    protected $model;
-    public function __construct(QueryBuilder $query)
+    public function __construct(
+        protected Model $model
+    ){}
+
+    public function handle()
     {
-        parent::__construct($query);
+        return Pipeline::send($this->model::query())
+            ->through($this->filters())
+            ->thenReturn();
     }
+    abstract public function filters(): array;
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Product\FilterRequest;
 use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Http\Requests\Admin\Product\UpdateRequest;
 use App\Models\Product;
@@ -15,9 +14,9 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(FilterRequest $request): View
+    public function index(): View
     {
-        $products = Product::filter($request->validated())->paginate();
+        $products = Product::filter()->paginate();
 
         return view('pages.admin.products.index', compact('products'));
     }

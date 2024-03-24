@@ -6,8 +6,9 @@ use App\Filters\Core\AbstractFilter;
 
 class CategoryFilter extends AbstractFilter
 {
-    public function name($name): static
+
+    public function filters(): array
     {
-        return $this->where('name', 'ILIKE', "%$name%");
+        return [];
     }
 }
